@@ -1,0 +1,28 @@
+self.addEventListener('install', event => {
+    event.waitUntil(
+      caches.open('CacheRecursos').then(cache => {
+        return cache.addAll([
+          '/',
+          'index.html',
+          'bootstrap.css',
+          'app.js',
+          'img/it.jpg',
+          'img/king.jpg',
+          'img/leather.jpg',
+          'img/saw.jpg',
+          'img/starWars.jpg'
+        ]);
+      })
+    );
+  });
+  
+  self.addEventListener('fetch', event => {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        return cachedResponse || fetch(event.request);
+      }).catch(error => {
+        console.error('Error en la estrategia de caché:', error);
+        return new Response('Error en la estrategia de caché', { status: 500, statusText: 'Internal Server Error' });
+      })
+    );
+  });

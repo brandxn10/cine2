@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/icons/icon-192x192.png">
+    <link rel="manifest" href="./manifest.json" />
+    <title>Cine</title>
+    <style>
+        body {
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        .principal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .contenido {
+            text-align: center;
+        }
+
+        #imagen img {
+            max-width: 200px;
+        }
+
+        .tabla {
+            margin-top: 20px;
+        }
+
+        td {
+            color: #ffffff;
+        }
+
+        input.form-control,
+        select.form-control {
+            background-color: #333333;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container principal">
+        <div class="contenido">
+            <label class="">Nombre:</label> <br>
+            <input type="text" class="form-control" id="nombre"> <br>
+            <label for="">Correo:</label> <br>
+            <input type="email" class="form-control" id="correo"> <br>
+            <label for="">Pelicula:</label> <br>
+            <select class="form-control" id="pelicula" onchange="cambiarImagen()">
+                <option value="1">Star Wars</option>
+                <option value="2">Saw</option>
+                <option value="3">It</option>
+                <option value="4">Leatherface</option>
+                <option value="5">King kong</option>
+            </select> <br>
+            <div id="imagen">
+                <img src="img/starWars.jpg" alt="">
+            </div>
+            <br>
+            <label for="">Numero de boletos:</label> <br>
+            <input type="number" class="form-control" id="boletos">
+        </div>
+        <div class="mt-2">
+            <button class="btn btn-success" onclick="guardar()">Guardar</button>
+        </div>
+        <br>
+        <div id="" class="text-center">
+            <div id="tabla2" class="table-responsive">
+                <table id="tabla" class="table table-bordered">
+                    <thead class="thead-dark">
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Pelicula</th>
+                        <th>Poster</th>
+                        <th>N. boletos</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tbody id="contTabla">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registrado con éxito:', registration);
+                })
+                .catch(error => {
+                    console.error('Error al registrar el Service Worker:', error);
+                });
+
+                navigator.serviceWorker.register('/sw1.js')
+                .then(registration => {
+                    console.log('Service Worker registrado con éxito:', registration);
+                })
+                .catch(error => {
+                    console.error('Error al registrar el Service Worker:', error);
+                });
+        }
+    </script>
+      
+      
+</body>
+</html>
